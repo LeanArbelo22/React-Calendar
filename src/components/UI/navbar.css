@@ -1,0 +1,13 @@
+.links{
+    text-decoration: none;
+    color: rgb(68, 204, 214);
+    font-weight: 900;
+    font-size: 1.5em;
+}
+.links:hover{
+    color: rgba(248, 193, 225, 0.902);
+}
+.enlaces{
+    display: flex;
+    flex-wrap: nowrap;
+}
