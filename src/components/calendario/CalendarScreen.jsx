@@ -9,7 +9,7 @@ const localizer = momentLocalizer(moment);
 const events = [{
     title: 'Estudio',
     start: moment().toDate(),
-    end: moment().add(1, 'hours').toDate(),
+    end: moment().add(1, 'day').toDate(),
     user: {
         id: '01',
         name: 'Leandro'
@@ -17,9 +17,10 @@ const events = [{
 }]
 
 function CalendarScreen() {
-
-    const [lastView, setLastView] = useState('lastView' /* || 'month' */);
-
+    
+    
+    const [lastView, setLastView] = useState(localStorage.getItem('lastView' || 'month' ));
+    
     const onDoubleClick = (e) => {
         /* console.log(e); */
     }
@@ -27,9 +28,10 @@ function CalendarScreen() {
        /*  console.log("un solo click"); */
     }
     const onViewChange = (e) => {
-        setLastView(e);
-        localStorage.setItem(e, 'lastView')
-    }
+        localStorage.setItem('lastView', e)
+        setLastView(e)
+        console.log(lastView)
+    }  
 
     return (
         <div className="container body mt-2">
@@ -39,9 +41,10 @@ function CalendarScreen() {
                 startAccessor="start"
                 endAccessor="end"
                 onDoubleClickEvent={onDoubleClick}
-                onSelectEvent={onSelect}
+                onSelectEvent={ onSelect }
                 style={{height: 525}}
-                onView={onViewChange}
+                onView={ onViewChange }
+                view={ lastView }
                 components={{
                     event: CalendarEvent
                 }}
